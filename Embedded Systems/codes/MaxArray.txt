@@ -1,0 +1,40 @@
+			area Mydata,data
+			align
+arr			dcd -1,0,5,6,14,24,6,17,4,10
+size		dcd 10
+			
+			area Mycode,code,readonly
+			export __main
+			
+			entry
+			export Reset_Handler
+Reset_Handler	proc
+			import __scatterload
+			bl	__scatterload
+			endp
+			
+	
+__main 		proc
+			ldr r3,=size
+			ldr r3,[r3]
+			sub r3,r3,#0x1
+			
+			ldr r4,=arr
+			ldr r0,[r4]
+			mov r1,#0x0
+			
+			mov r2,#0x0
+loop 		cmp r2,r3
+			bge endloop
+			ldr r5,[r4,r2, lsl #2]
+			cmp r5,r0
+			movgt r0,r5;max
+			movgt r1,r2;max pos
+			add r2,r2,#0x1
+			b loop
+			
+endloop
+
+stop 		b stop
+			endp
+			end

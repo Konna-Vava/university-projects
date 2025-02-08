@@ -1,0 +1,50 @@
+				area MyCata, data
+					align
+arr					dcd 21,14,9,12,7,0,8,2,4,5
+siz					dcd 10
+
+				area MyCode,code, readonly
+					entry
+					export Reset_Handler
+
+Reset_Handler		proc
+					import __scatterload
+					bl __scatterload
+					endp
+						
+					export __main
+
+__main				proc
+					;r1 = i=N-1=9
+					;r0 =j=1
+					
+					ldr r5,=arr
+					
+					ldr r6,=siz
+					ldr r6,[r6]
+					sub r1,r6,#1
+					
+loopi				cmp r1,#0
+					ble stop
+					mov r0,#1
+loopj				cmp r0,r1
+					bgt	endloopj
+					sub r2,r0,#1
+					ldr r3, [r5,r2,lsl #2]	;r3=arr[j-1]				
+					ldr r4, [r5,r0,lsl #2]	;r4=arr[j]
+					cmp r3,r4
+					ble incj ; BYPASS
+					mov r6,r3  ;bypass
+					mov r3,r4  ;bypass
+					mov r4,r6  ;bypass
+					str r4,[r5,r0,lsl #2] ; bypass
+					str r3,[r5,r2,lsl #2] ; bypass
+					;strgt r3,[r5,r0,lsl #2] ; bypass
+					;strgt r4,[r5,r2,lsl #2] ; bypass
+incj				add r0,r0,#1
+					b loopj
+endloopj			sub r1,r1,#1
+					b loopi
+stop				b stop
+					endp
+					end		

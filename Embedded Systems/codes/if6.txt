@@ -1,0 +1,36 @@
+; periexei pollapla deigmata programmatvn me if
+			AREA MyCode, CODE, READONLY;
+				EXPORT __main
+					
+				ENTRY
+				
+__main
+								
+				mov r1,#0x7
+				mov r2,#0x9      ; if r1<r2
+if1				cmp r2,r1     
+				ble else1           
+then1			mov r3,#0x1
+                b enif1    
+else1           mov r3,#0x0
+
+enif1			;b stop	
+			    
+				mov r1,#0x7
+				mov r2,#0x9  ; if(r1<20 || r2>5) r3=1
+if2				cmp r1,#0x14
+				ble then2
+				cmp r2,#0x5
+				ble enif2
+then2			mov r3,#0x2
+
+enif2           ;b stop
+
+if3				mov r1,#0x7
+				mov r2,#0x9  ; if(r1<20 || r2>5) r3=1
+				cmp r1,#0x14
+				movle r3,#0x3
+				cmp r1,#0x5
+				movge r3,#0x3
+
+stop 			b stop

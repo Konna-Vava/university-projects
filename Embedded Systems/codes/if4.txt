@@ -1,0 +1,26 @@
+			AREA MyCode, CODE, READONLY;
+				EXPORT __main
+					
+				ENTRY
+				
+__main
+				mov r0,#0xA
+				mov r1,#0x7
+				mov r2,#0x5
+if1 			cmp r0,#0xC
+				beq then1
+				
+				cmp r1,#0x4
+				ble enif
+				
+				cmp r2,#0x8
+				bge enif
+				
+				
+then1			mov r3,#0x1
+
+
+enif			b stop
+
+
+stop 			b stop

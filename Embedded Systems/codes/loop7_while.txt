@@ -1,0 +1,17 @@
+		AREA Project19, code, readonly
+			EXPORT __main
+		
+			ENTRY
+	
+__main
+
+			mov r1,#0xA ; i
+			mov r2,#0x0 ; s
+
+loop 		cmp r1,#0x0
+			subgt r1,r1,#0x1
+			addgt r2,r2,r1
+			bgt loop
+endloop
+stop 		b stop
+			end

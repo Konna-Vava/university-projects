@@ -1,0 +1,16 @@
+			area mycode,code,readonly
+				export __main
+					
+				entry
+				
+__main 
+				mov r1,#0x5
+				mov r2,#0x1
+				
+loop			cmp r1,#0x0
+				beq stop
+				mul r2,r2,r1
+				sub r1,r1,#0x1
+				b loop
+stop 			b stop
+				end

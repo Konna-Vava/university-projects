@@ -1,0 +1,21 @@
+			AREA Project22, code, readonly
+				EXPORT __main
+		
+				ENTRY
+	
+__main 			proc
+	
+				mov r0,#0x1 ; apotelesma
+				mov r1,#0x5	;n
+				
+				mov r2,#0x1 ;metritis
+
+loop			cmp r2,r1
+				bgt stop
+				mul r0,r0,r2
+				add r2,r2,#0x1
+				b loop
+				
+stop			b stop
+				endp
+				end

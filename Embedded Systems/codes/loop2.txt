@@ -1,0 +1,21 @@
+			Area project26,code,readonly
+				export __main
+					
+				entry
+
+__main
+				mov r1,#0x1
+				mov r2,#0x0
+				mov r3,#0x0
+
+loop				cmp r2,#0xA
+				bge endloop
+				add r1,r1,r2
+				mov r3,r1
+				sub r3,#0x7
+				cbz r3,endloop
+				add r2,r2,#0x1
+				b loop
+				
+				
+endloop

@@ -1,0 +1,19 @@
+			AREA MyCode, CODE, READONLY;
+				EXPORT __main
+					
+				ENTRY
+				
+__main
+				mov r1,#0x7 ; if r1==4; r2=1; else r2=5
+if1				cmp r1,#0x4
+				bne else1
+then1			mov r2,#0x1
+				b enif
+else1			mov r2,#0x5
+enif			b stop
+
+if2				cmp r1,#0x4 
+				moveq r2,#0x1
+				movne r2,#0x5
+				
+stop 			b stop

@@ -1,0 +1,18 @@
+			area Mycode, code, readonly
+				export __main
+					
+				entry
+				
+__main
+				mov r1,#0x1
+				mov r2,#0x1
+				mov r3,#0x5
+				
+loop			cmp r1,r3
+				bgt endloop
+				mul r2,r2,r1
+				add r1,r1,#0x1
+				b loop
+endloop
+stop			b stop
+				end
